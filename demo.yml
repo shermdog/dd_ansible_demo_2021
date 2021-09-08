@@ -1,0 +1,16 @@
+---
+- name: cli command playbook
+  hosts: all
+  gather_facts: no
+  vars:
+    ansible_connection: network_cli
+
+  tasks:
+    - name: sh ip interface brief
+      cli_command:
+        command: "show ip interface brief"
+      when: ansible_network_os is defined
+      register: output
+
+    - debug:
+        msg: "{{ output.stdout_lines }}"
