@@ -1,0 +1,9 @@
+- name: Metric generating sample
+  hosts: localhost
+  tasks:
+    - name: Pause for random time
+      pause:
+        seconds: "{{ 5 | random }}"
+    - name: Hello Message
+      debug:
+        msg: "Hello World!"
