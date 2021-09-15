@@ -1,0 +1,15 @@
+- name: Event generating sample
+  hosts: localhost
+  tasks:
+    - name: Pause for random time
+      pause:
+        seconds: "{{ 5 | random }}"
+    - name: Random assertion
+      vars:
+        x: "{{ 5 | random }}"
+      assert:
+        that:
+          - x | int <= 2
+          - x | int >= 0
+        fail_msg: "Playbook failure {{ x }}"
+        success_msg: "Playbook success {{ x }}"
